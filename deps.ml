@@ -3,9 +3,9 @@ open Dune_items
 
 type t = Dir_set.t Libraries.t
 
-let dune_describe_external_lib_deps () = Bos.Cmd.(v "dune" % "describe" % "external-lib-deps")
+let dune_describe_external_lib_deps () = Bos.Cmd.(v "dune-lint" % "describe" % "external-lib-deps")
 
-let dune_describe_entries () = Bos.Cmd.(v "dune" % "describe" % "package-entries")
+let dune_describe_entries () = Bos.Cmd.(v "dune-lint" % "describe" % "package-entries")
 
 let describe_external_lib_deps =
   Lazy.from_fun (fun _ ->

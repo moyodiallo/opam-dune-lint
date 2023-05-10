@@ -180,6 +180,11 @@ let main force dir =
 
 open Cmdliner
 
+let version =
+  match Build_info.V1.version () with
+  | None -> "n/a"
+  | Some v -> Build_info.V1.Version.to_string v
+
 let dir =
   Arg.value @@
   Arg.pos 0 Arg.dir "." @@
@@ -197,7 +202,7 @@ let force =
 
 let cmd =
   let doc = "keep dune and opam files in sync" in
-  let info = Cmd.info "opam-dune-lint" ~doc in
+  let info = Cmd.info "opam-dune-lint" ~version ~doc in
   let term = Term.(const main $ force $ dir) in
   Cmd.v info term
 

@@ -17,6 +17,7 @@
   (sexplib (>= v0.14.0))
   (cmdliner (>= 1.1.0))
   (stdune (>= 3.0))
+  (dune-build-info (>= 3.0))
   (ocaml (>= 4.13.0))
   (bos (>= 0.2.0))
   (fmt (>= 0.8.9))
