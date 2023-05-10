@@ -101,7 +101,7 @@ let update (changes:(_ * Change.t list) Paths.t) (t:t) =
   List.map (map_if "package" update_package) t
 
 let dune_format dune =
-  Bos.OS.Cmd.(in_string dune |>  run_io Bos.Cmd.(v "dune" % "format-dune-file") |> out_string)
+  Bos.OS.Cmd.(in_string dune |>  run_io Bos.Cmd.(v "dune-lint" % "format-dune-file") |> out_string)
   |> Bos.OS.Cmd.success
   |> or_die
 

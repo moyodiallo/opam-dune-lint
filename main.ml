@@ -4,7 +4,7 @@ let or_die = function
   | Ok x -> x
   | Error (`Msg m) -> failwith m
 
-let dune_describe_opam_files = Bos.Cmd.(v "dune" % "describe" % "opam-files")
+let dune_describe_opam_files = Bos.Cmd.(v "dune-lint" % "describe" % "opam-files")
 
 let () =
   (* When run as a plugin, opam helpfully scrubs the environment.
