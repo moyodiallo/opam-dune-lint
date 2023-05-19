@@ -1,12 +1,15 @@
-(lang dune 2.7)
+(lang dune 3.7)
 (name opam-dune-lint)
+
 (formatting disabled)
 (generate_opam_files true)
+(cram enable)
+
 (source (github ocurrent/opam-dune-lint))
 (authors "talex5@gmail.com")
 (maintainers "talex5@gmail.com")
 (license ISC)
-(cram enable)
+
 (package
  (name opam-dune-lint)
  (synopsis "Ensure dune and opam dependencies are consistent")
