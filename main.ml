@@ -142,7 +142,7 @@ let confirm_with_user () =
     false
   )
 
-let main force dir =
+let main () force dir =
   Sys.chdir dir;
   let index = Index.create () in
   let old_opam_files = get_opam_files () in
@@ -178,6 +178,14 @@ let main force dir =
 
 open Cmdliner
 
+let setup_fmt style_renderer =
+  Fmt_tty.setup_std_outputs ?style_renderer ();
+  ()
+
+let setup_fmt =
+  let docs = Manpage.s_common_options in
+  Term.(const setup_fmt $ Fmt_cli.style_renderer ~docs ())
+
 let dir =
   Arg.value @@
   Arg.pos 0 Arg.dir "." @@
@@ -196,9 +204,7 @@ let force =
 let cmd =
   let doc = "keep dune and opam files in sync" in
   let info = Cmd.info "opam-dune-lint" ~doc in
-  let term = Term.(const main $ force $ dir) in
+  let term = Term.(const main $ setup_fmt $ force $ dir) in
   Cmd.v info term
 
-let () =
-  Fmt_tty.setup_std_outputs ();
-  exit @@ Cmd.eval cmd
+let () = exit @@ Cmd.eval cmd
